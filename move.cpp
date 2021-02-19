@@ -14,16 +14,24 @@ void Input(){
     if (_kbhit){
         switch (_getch()){
             case 'a':
-                x -= 1;;
+                if (x > 2){
+                    x -= 1;
+                }
                 break;
             case 's':
+            if (y < height - 2){
                 y += 1;
+            }
                 break;
             case 'd':
+            if (x < width - 1){
                 x += 1;
+            }
                 break;
             case 'w':
+            if (y > 1){
                 y -= 1;
+            }
                 break;
             case 'q':
                 running = false;
@@ -33,7 +41,7 @@ void Input(){
 
 string LeftXSpacing(){
     string str;
-    for (int i = 1; i < x; i++){
+    for (int i = 1; i < x - 1; i++){
         str += " ";
     }
     return str;
@@ -41,7 +49,7 @@ string LeftXSpacing(){
 
 string RightXSpacing(){
     string str;
-    for (int i = 0; i < (width - x) - 2; i ++){
+    for (int i = 0; i < (width - x) - 1; i++){
         str += " ";
     }
     return str;
@@ -89,10 +97,6 @@ void Draw(){
 int main(){
     cout << "O";
     while (running){
-        if (x > width - 3){x = width - 3;}
-        if (x < 2){x = 2;}
-        if (y < 2){y = 2;}
-        if (y > height - 3){y = height - 3;}
         Input();
         if (_kbhit){
             Draw();
